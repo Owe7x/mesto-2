@@ -1,0 +1,6 @@
+.elements__li {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    list-style: none;
+}
