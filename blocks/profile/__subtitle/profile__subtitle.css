@@ -1,9 +1,10 @@
 .profile__subtitle {
-    font-weight: 500;
+    font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
     margin: 0;
+    text-overflow: ellipsis;
 }
 @media screen and (max-width: 585px) {
     .profile__subtitle {

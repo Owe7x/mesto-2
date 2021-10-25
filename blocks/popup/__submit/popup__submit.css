@@ -9,6 +9,7 @@
     text-align: center;
     color: #FFFFFF;
     cursor: pointer;
+    border: none;
 }
 .popup__submit:hover {
     opacity: 0.8;

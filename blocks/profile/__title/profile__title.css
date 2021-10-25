@@ -4,6 +4,7 @@
     line-height: 48px;
     color: #FFFFFF;
     margin: 0 0 16px;
+    text-overflow: ellipsis;
 }
 @media screen and (max-width: 585px) {
     .profile__title {
