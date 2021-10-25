@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Путешествия по России</title>
+</head>
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <img src="images/logo.svg" alt="Логотип" class="header__logo">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__block">
+          <img src="images/Avatar.png" alt="Аватар" class="profile__avatar">
+          <div class="profile__info">
+            <div class="profile__info-block">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button class="profile__edit-button" type="button" ></button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+
+        </ul>
+      </section>
+    </main>
+    <template id="element-template">
+      <li class="elements__element">
+        <button type="button" class="elements__delete"></button>
+        <img src="images/elements-img-1.jpg" alt="Карачаевск" class="elements__item">
+        <div class="elements__info">
+          <h3 class="elements__name">
+            Карачаевск
+          </h3>
+          <button class="elements__bookmark" type="button"></button>
+        </div>
+      </li>
+    </template>
+    <footer class="footer">
+      <p class="footer__copyright">
+        © 2020 Тимур Рахманов
+      </p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <form name="form" class="popup__form">
+            <button class="popup__close" type="button"></button>
+            <h2 class="popup__title">
+              Редактировать профиль
+            </h2>
+            <div class="popup__container-input">
+              <input name="name" type="text" class="popup__input " >
+              <input name="job" type="text" class="popup__input " >
+            </div>
+            <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup form">
+      <div class="popup__container">
+        <form name="form" class="popup__form">
+            <button class="popup__close form__close" type="button"></button>
+            <h2 class="popup__title">
+              Новое место
+            </h2>
+            <div class="popup__container-input">
+              <input name="place-title" type="text" class="popup__input form__name" placeholder="Горнный Алтай">
+              <input name="place-img" type="text" class="popup__input form__src" placeholder="https://unsplash.com/example.jpg">
+            </div>
+            <button class="popup__submit form__submit" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup-img">
+      <div class="popup__container popup__container_img">
+          <button class="popup__close popup__close_img" type="button"></button>
+          <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="" class="popup__img">
+          <p class="popup__img-title">Текст</p>
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
