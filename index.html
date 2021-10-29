@@ -48,10 +48,10 @@
         © 2020 Тимур Рахманов
       </p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <form name="form" class="popup__form">
-            <button class="popup__close" type="button"></button>
+        <form name="form" class="popup__form popup__form_type_edit-profile">
+            <button class="popup__close popup__close_type_edit-profile" type="button"></button>
             <h2 class="popup__title">
               Редактировать профиль
             </h2>
@@ -59,14 +59,14 @@
               <input name="name" type="text" class="popup__input " >
               <input name="job" type="text" class="popup__input " >
             </div>
-            <button class="popup__submit" type="submit">Сохранить</button>
+            <button class="popup__submit popup__submit_type_edit-profile" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
-    <div class="popup form">
+    <div class="popup popup_type_add-place">
       <div class="popup__container">
-        <form name="form" class="popup__form">
-            <button class="popup__close form__close" type="button"></button>
+        <form name="form" class="popup__form popup__form_type_add-place">
+            <button class="popup__close popup__close_type_add-place" type="button"></button>
             <h2 class="popup__title">
               Новое место
             </h2>
@@ -74,18 +74,19 @@
               <input name="place-title" type="text" class="popup__input form__name" placeholder="Горнный Алтай">
               <input name="place-img" type="text" class="popup__input form__src" placeholder="https://unsplash.com/example.jpg">
             </div>
-            <button class="popup__submit form__submit" type="submit">Создать</button>
+            <button class="popup__submit popup__submit_type_add-place" type="submit">Создать</button>
         </form>
       </div>
     </div>
-    <div class="popup popup-img">
+    <div class="popup popup_type_full-img">
       <div class="popup__container popup__container_img">
-          <button class="popup__close popup__close_img" type="button"></button>
+          <button class="popup__close popup__close_type__full-img" type="button"></button>
           <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="" class="popup__img">
           <p class="popup__img-title">Текст</p>
       </div>
     </div>
   </div>
+  <script src="js/initial-cards.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

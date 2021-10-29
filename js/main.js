@@ -1,143 +1,106 @@
-let openEditForm = document.querySelector('.profile__edit-button')
-let closeEditForm = document.querySelector('.popup__close')
-let popupElement = document.querySelector('.popup')
+const openEditForm = document.querySelector('.profile__edit-button')
+const closeEditForm = document.querySelector('.popup__close_type_edit-profile')
+const popupElementProfile = document.querySelector('.popup_type_edit-profile')
 
-let openAddForm = document.querySelector('.profile__add-button')
-let closeAddForm = document.querySelector('.form__close')
-let formElement = document.querySelector('.form')
+const buttonOpenPopupProfile = document.querySelector('.profile__add-button')
+const buttonClosePopupPlace = document.querySelector('.popup__close_type_add-place')
+const popupElementPlace = document.querySelector('.popup_type_add-place')
 
-let nameInput = document.querySelector('[name="name"]')
-let jobInput = document.querySelector('[name="job"]')
+const nameInput = document.querySelector('[name="name"]')
+const jobInput = document.querySelector('[name="job"]')
 
-let placeTitle = document.querySelector('[name="place-title"]')
-let placeImg = document.querySelector('[name="place-img"]')
+const placeTitle = document.querySelector('[name="place-title"]')
+const placeImg = document.querySelector('[name="place-img"]')
 
-let popupImg = document.querySelector('.popup-img')
-let popupImgSrc = document.querySelector('.popup__img')
-let popupImgTitle = document.querySelector('.popup__img-title')
-let popupImgClose = document.querySelector('.popup__close_img')
+const popupElementImage = document.querySelector('.popup_type_full-img')
+const popupImgSrc = document.querySelector('.popup__img')
+const popupImgTitle = document.querySelector('.popup__img-title')
+const buttonClosePopupImage = document.querySelector('.popup__close_type__full-img')
 
-let nameText = document.querySelector('.profile__title')
-let jobText = document.querySelector('.profile__subtitle')
-let elementsList = document.querySelector('.elements__list')
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]; 
-function Card(initialCardsName , initialCardsImg) {
+const nameText = document.querySelector('.profile__title')
+const jobText = document.querySelector('.profile__subtitle')
+const elementsList = document.querySelector('.elements__list')
+
+
+function createCard(item) {
     const elementTemplate = document.querySelector('#element-template').content;
-    const elementElement = elementTemplate.querySelector('.elements__element').cloneNode(true);
+    const element = elementTemplate.querySelector('.elements__element').cloneNode(true);
   
-    elementElement.querySelector('.elements__item').src = initialCardsImg;
-    elementElement.querySelector('.elements__name').textContent = initialCardsName;
-    elementElement.querySelector('.elements__item').alt = initialCardsName;
-    elementElement.querySelector('.elements__bookmark').addEventListener('click', function (evt) {
+    element.querySelector('.elements__item').src = item.link;
+    element.querySelector('.elements__name').textContent = item.name;
+    element.querySelector('.elements__item').alt = item.name;
+    element.querySelector('.elements__bookmark').addEventListener('click', function (evt) {
         evt.target.classList.toggle('elements__bookmark_activated');
     });
-    elementElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
-        elementElement.remove()
+    element.querySelector('.elements__delete').addEventListener('click', function () {
+        element.remove()
     });  
-    elementElement.querySelector('.elements__item').addEventListener('click', (evt)=>{
-        popupImgTitle.textContent = initialCardsName;
-        popupImgSrc.src = initialCardsImg;
-        popupImgSrc.alt = initialCardsName;
-        toggleForm(popupImg);
+    element.querySelector('.elements__item').addEventListener('click', ()=>{
+        popupImgTitle.textContent = item.name;
+        popupImgSrc.src = item.link;
+        popupImgSrc.alt = item.name;
+        togglePopup(popupElementImage);
     })
-    elementsList.append(elementElement)
+    return element;
 }
-for (let i = 0; i < initialCards.length; i++) { 
-    Card(initialCards[i].name, initialCards[i].link)
+function render(item) {
+    elementsList.append(item)
 }
 
+initialCards.forEach((item) => {
+    render(createCard(item))
+}) 
 
-function toggleForm(form) {
+function togglePopup(form) {
     event.preventDefault();
-    if(form.classList.contains('popup_opened')) {
-        form.classList.remove('popup_opened')
-    } else {
-        form.classList.add('popup_opened')
-    }
-    inputForm()
+    form.classList.toggle('popup_opened')
 }
 
-function inputForm() {
-    nameInput.value = nameText.innerHTML
-    jobInput.value = jobText.innerHTML
+function insertValuesFormProfile() {
+    nameInput.value = nameText.textContent
+    jobInput.value = jobText.textContent
+    
 }
+insertValuesFormProfile()
 
-function formSubmitHandler (evt) {
+function handleFormProfileSubmit (evt) {
     evt.preventDefault(); 
     nameText.textContent = nameInput.value
     jobText.textContent = jobInput.value
-    popupElement.classList.remove('popup_opened')
+    togglePopup(popupElementProfile)
 }
 
-function formAddItem (evt) {
-    evt.preventDefault(); 
-
-    const elementTemplate = document.querySelector('#element-template').content;
-    const elementElement = elementTemplate.querySelector('.elements__element').cloneNode(true);
-  
-    elementElement.querySelector('.elements__item').src = placeImg.value;
-    elementElement.querySelector('.elements__name').textContent = placeTitle.value;
-    elementElement.querySelector('.elements__item').alt = placeTitle.value;
-    elementElement.querySelector('.elements__bookmark').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('elements__bookmark_activated');
-    }); 
-    elementElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
-        elementElement.remove()
-    });
-    elementElement.querySelector('.elements__item').addEventListener('click', (evt)=>{
-        popupImgTitle.textContent = placeTitle.value;
-        popupImgSrc.src = placeImg.value;
-        popupImgSrc.alt = placeTitle.value;
-        toggleForm(popupImg);
-    })
-    elementsList.prepend(elementElement)
-
-    formElement.classList.remove('popup_opened')
+function addCard(item) {
+    elementsList.prepend(createCard(item))
 }
 
-popupElement.addEventListener('submit', formSubmitHandler); 
 
-formElement.addEventListener('submit', formAddItem); 
+popupElementProfile.addEventListener('submit', handleFormProfileSubmit); 
+
+popupElementPlace.addEventListener('submit', (e) => {
+	e.preventDefault();
+	const item = {
+		name: placeTitle.value,
+		link: placeImg.value
+	}
+	addCard(item);
+	togglePopup(popupElementPlace)
+
+}); 
+
 
 openEditForm.addEventListener('click', function(){
-    toggleForm(popupElement)
+    togglePopup(popupElementProfile)
 })
-openAddForm.addEventListener('click', function(){
-    toggleForm(formElement)
+buttonOpenPopupProfile.addEventListener('click', function(){
+    togglePopup(popupElementPlace)
 })
 closeEditForm.addEventListener('click', function(){
-    toggleForm(popupElement)
+    togglePopup(popupElementProfile)
 })
-closeAddForm.addEventListener('click', function(){
-    toggleForm(formElement)
+buttonClosePopupPlace.addEventListener('click', function(){
+    togglePopup(popupElementPlace)
 })
-popupImgClose.addEventListener('click', function(){
-    toggleForm(popupImg)
+buttonClosePopupImage.addEventListener('click', function(){
+    togglePopup(popupElementImage)
 })
-
-
