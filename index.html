@@ -50,14 +50,16 @@
     </footer>
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <form name="form" class="popup__form popup__form_type_edit-profile">
+        <form name="form" class="popup__form popup__form_type_edit-profile" novalidate>
             <button class="popup__close popup__close_type_edit-profile" type="button"></button>
             <h2 class="popup__title">
               Редактировать профиль
             </h2>
             <div class="popup__container-input">
-              <input name="name" type="text" class="popup__input " >
-              <input name="job" type="text" class="popup__input " >
+              <input name="name" type="text" class="popup__input " id="name-input" required minlength="2" maxlength="40">
+              <span class="form__error name-input-error"></span>
+              <input name="job" type="text" class="popup__input " id="job-input" required minlength="2" maxlength="200">
+              <span class="form__error job-input-error"></span>
             </div>
             <button class="popup__submit popup__submit_type_edit-profile" type="submit">Сохранить</button>
         </form>
@@ -71,8 +73,10 @@
               Новое место
             </h2>
             <div class="popup__container-input">
-              <input name="place-title" type="text" class="popup__input form__name" placeholder="Горнный Алтай">
-              <input name="place-img" type="text" class="popup__input form__src" placeholder="https://unsplash.com/example.jpg">
+              <input name="place-title" type="text" class="popup__input " placeholder="Горнный Алтай" id="place-title-input" required minlength="2" maxlength="30">
+              <span class="form__error place-title-input-error"></span>
+              <input name="place-img" type="url" class="popup__input " placeholder="https://unsplash.com/example.jpg" id="place-img-input" required>
+              <span class="form__error place-img-input-error"></span>
             </div>
             <button class="popup__submit popup__submit_type_add-place" type="submit">Создать</button>
         </form>
@@ -80,12 +84,13 @@
     </div>
     <div class="popup popup_type_full-img">
       <div class="popup__container popup__container_img">
-          <button class="popup__close popup__close_type__full-img" type="button"></button>
+          <button class="popup__close popup__close_type_full-img" type="button"></button>
           <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="" class="popup__img">
           <p class="popup__img-title">Текст</p>
       </div>
     </div>
   </div>
+  <script src="js/validate.js"></script>
   <script src="js/initial-cards.js"></script>
   <script src="js/main.js"></script>
 </body>

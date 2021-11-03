@@ -15,7 +15,7 @@ const placeImg = document.querySelector('[name="place-img"]')
 const popupElementImage = document.querySelector('.popup_type_full-img')
 const popupImgSrc = document.querySelector('.popup__img')
 const popupImgTitle = document.querySelector('.popup__img-title')
-const buttonClosePopupImage = document.querySelector('.popup__close_type__full-img')
+const buttonClosePopupImage = document.querySelector('.popup__close_type_full-img')
 
 const nameText = document.querySelector('.profile__title')
 const jobText = document.querySelector('.profile__subtitle')
@@ -54,6 +54,15 @@ initialCards.forEach((item) => {
 function togglePopup(form) {
     event.preventDefault();
     form.classList.toggle('popup_opened')
+}
+document.addEventListener('keydown', popupCloseKey);
+
+function popupCloseKey (event){
+    if(event.key === 'Escape'){
+        popupElementProfile.classList.remove('popup_opened')
+        popupElementPlace.classList.remove('popup_opened')
+        popupElementImage.classList.remove('popup_opened')
+    }
 }
 
 function insertValuesFormProfile() {
@@ -104,3 +113,14 @@ buttonClosePopupPlace.addEventListener('click', function(){
 buttonClosePopupImage.addEventListener('click', function(){
     togglePopup(popupElementImage)
 })
+
+function overlayClickHandler (e){
+    if (e.target.classList.contains('popup_opened')){
+        popupElementProfile.classList.remove('popup_opened')
+        popupElementPlace.classList.remove('popup_opened')
+        popupElementImage.classList.remove('popup_opened')
+        }
+    }
+popupElementProfile.addEventListener('click', overlayClickHandler);
+popupElementPlace.addEventListener('click', overlayClickHandler);
+popupElementImage.addEventListener('click', overlayClickHandler);

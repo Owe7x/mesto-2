@@ -4,4 +4,5 @@
     overflow: hidden;
     list-style: none;
     position: relative;
+    max-width: 282px;
 }

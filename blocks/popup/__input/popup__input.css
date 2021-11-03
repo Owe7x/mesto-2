@@ -6,6 +6,9 @@
     border-bottom: 1px solid #cccccc;
     padding: 0 0 13px;
 }
+.popup__input:invalid  {
+    border-bottom: 1px solid #FF0000;
+}
 .popup__input:last-child  {
     margin-bottom: 48px;
 }
