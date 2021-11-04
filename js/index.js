@@ -1,12 +1,14 @@
-const openEditForm = document.querySelector('.profile__edit-button')
-const closeEditForm = document.querySelector('.popup__close_type_edit-profile')
+const editButton = document.querySelector('.profile__edit-button')
+const popupCloseButtonEdit  = document.querySelector('.popup__close_type_edit-profile')
 const popupElementProfile = document.querySelector('.popup_type_edit-profile')
+const buttonEditSubmit = document.querySelector('.popup__submit_type_edit-profile')
+const buttonAddSubmit = document.querySelector('.popup__submit_type_add-place')
 
 const buttonOpenPopupProfile = document.querySelector('.profile__add-button')
 const buttonClosePopupPlace = document.querySelector('.popup__close_type_add-place')
 const popupElementPlace = document.querySelector('.popup_type_add-place')
 
-const nameInput = document.querySelector('[name="name"]')
+const nameInput = document.querySelector('[name="name"]') 
 const jobInput = document.querySelector('[name="job"]')
 
 const placeTitle = document.querySelector('[name="place-title"]')
@@ -39,7 +41,7 @@ function createCard(item) {
         popupImgTitle.textContent = item.name;
         popupImgSrc.src = item.link;
         popupImgSrc.alt = item.name;
-        togglePopup(popupElementImage);
+        openPopup(popupElementImage)
     })
     return element;
 }
@@ -51,17 +53,20 @@ initialCards.forEach((item) => {
     render(createCard(item))
 }) 
 
-function togglePopup(form) {
-    event.preventDefault();
-    form.classList.toggle('popup_opened')
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', popupCloseKey);
 }
-document.addEventListener('keydown', popupCloseKey);
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', popupCloseKey);
+}
 
 function popupCloseKey (event){
     if(event.key === 'Escape'){
-        popupElementProfile.classList.remove('popup_opened')
-        popupElementPlace.classList.remove('popup_opened')
-        popupElementImage.classList.remove('popup_opened')
+        const popup = document.querySelector('.popup_opened'); 
+        closePopup(popup);
     }
 }
 
@@ -76,7 +81,7 @@ function handleFormProfileSubmit (evt) {
     evt.preventDefault(); 
     nameText.textContent = nameInput.value
     jobText.textContent = jobInput.value
-    togglePopup(popupElementProfile)
+    closePopup(popupElementProfile)
 }
 
 function addCard(item) {
@@ -93,34 +98,37 @@ popupElementPlace.addEventListener('submit', (e) => {
 		link: placeImg.value
 	}
 	addCard(item);
-	togglePopup(popupElementPlace)
+    e.target.reset();
+    closePopup(popupElementPlace)
 
 }); 
 
 
-openEditForm.addEventListener('click', function(){
-    togglePopup(popupElementProfile)
+editButton.addEventListener('click', function(){
+    openPopup(popupElementProfile)
+    buttonEditSubmit.removeAttribute('disabled');
+    buttonEditSubmit.classList.remove('popup__button_disabled');
 })
 buttonOpenPopupProfile.addEventListener('click', function(){
-    togglePopup(popupElementPlace)
+    openPopup(popupElementPlace)
+    buttonAddSubmit.setAttribute('disabled', true);
+    buttonAddSubmit.classList.add('popup__button_disabled')
 })
-closeEditForm.addEventListener('click', function(){
-    togglePopup(popupElementProfile)
+popupCloseButtonEdit.addEventListener('click', function(){
+    closePopup(popupElementProfile)
 })
 buttonClosePopupPlace.addEventListener('click', function(){
-    togglePopup(popupElementPlace)
+    closePopup(popupElementPlace)
 })
 buttonClosePopupImage.addEventListener('click', function(){
-    togglePopup(popupElementImage)
+    closePopup(popupElementImage)
 })
 
 function overlayClickHandler (e){
     if (e.target.classList.contains('popup_opened')){
-        popupElementProfile.classList.remove('popup_opened')
-        popupElementPlace.classList.remove('popup_opened')
-        popupElementImage.classList.remove('popup_opened')
-        }
+        closePopup(e.target);
     }
+}
 popupElementProfile.addEventListener('click', overlayClickHandler);
 popupElementPlace.addEventListener('click', overlayClickHandler);
 popupElementImage.addEventListener('click', overlayClickHandler);
