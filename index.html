@@ -56,10 +56,10 @@
               Редактировать профиль
             </h2>
             <div class="popup__container-input">
-              <input name="name" type="text" class="popup__input " id="name-input" required minlength="2" maxlength="40">
-              <span class="name-input-error"></span>
-              <input name="job" type="text" class="popup__input " id="job-input" required minlength="2" maxlength="200">
-              <span class="job-input-error"></span>
+              <input name="name" type="text" class="popup__input popup__input_edit" id="name-input" required minlength="2" maxlength="40">
+              <span class="popup__error_visible" id="name-input-error"></span>
+              <input name="job" type="text" class="popup__input popup__input_edit" id="job-input" required minlength="2" maxlength="200">
+              <span class="popup__error_visible" id="job-input-error" ></span>
             </div>
             <button class="popup__submit popup__submit_type_edit-profile" type="submit">Сохранить</button>
         </form>
@@ -73,10 +73,10 @@
               Новое место
             </h2>
             <div class="popup__container-input">
-              <input name="place-title" type="text" class="popup__input " placeholder="Горнный Алтай" id="place-title-input" required minlength="2" maxlength="30">
-              <span class="place-title-input-error"></span>
-              <input name="place-img" type="url" class="popup__input " placeholder="https://unsplash.com/example.jpg" id="place-img-input" required>
-              <span class="place-img-input-error"></span>
+              <input name="place-title" type="text" class="popup__input popup__input_add" placeholder="Горнный Алтай" id="place-title-input" required minlength="2" maxlength="30">
+              <span class="popup__error_visible" id="place-title-input-error"></span>
+              <input name="place-img" type="url" class="popup__input popup__input_add" placeholder="https://unsplash.com/example.jpg" id="place-img-input" required>
+              <span class="popup__error_visible" id="place-img-input-error"></span>
             </div>
             <button class="popup__submit popup__submit_type_add-place" type="submit" disabled>Создать</button>
         </form>
@@ -90,8 +90,6 @@
       </div>
     </div>
   </div>
-  <script src="js/validate.js"></script>
-  <script src="js/initial-cards.js"></script>
-  <script src="js/index.js"></script>
+  <script type="module" src="js/index.js"></script>
 </body>
 </html>
